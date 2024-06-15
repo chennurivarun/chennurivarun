@@ -49,7 +49,7 @@ I am a passionate tech enthusiast and AI researcher dedicated to developing inno
 
 ## 🔥 GitHub Stats
 
-<img align="right" alt="Coding"  src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif">
+<img align="right" width="38%" alt="Coding"  src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif">
 
 <p align="center">
   <a href="https://github.com/chennurivarun"><img width="50%" src="https://github-readme-stats.vercel.app/api?username=chennurivarun&show_icons=true&locale=en&layout=compact&theme=radical&title_color=ff3068" alt="GitHub Stats" /></a>
