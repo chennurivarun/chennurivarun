@@ -1,4 +1,10 @@
-<h1 align="center">Hey, I'm Varun 👋</h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/hero/builder-profile-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/hero/builder-profile-light.svg">
+    <img src="./assets/hero/builder-profile-dark.svg" alt="Varun Chennuri, AI product architect — terminal-style profile card" width="100%">
+  </picture>
+</p>
 
 <p align="center">
   <a href="https://xuscorp.com/founder"><strong>Portfolio</strong></a> ·
@@ -6,6 +12,8 @@
   <a href="https://linkedin.com/in/varun_chennuri"><strong>LinkedIn</strong></a> ·
   <a href="https://twitter.com/varun_chennuri"><strong>X</strong></a>
 </p>
+
+## Hey, I'm Varun
 
 I'm an **AI product architect and full-stack builder** based in Hyderabad, India. I work across **AI agents, automotive dealer platforms, and developer tools** — shaping the product, designing the system, and writing the software behind it.
 
