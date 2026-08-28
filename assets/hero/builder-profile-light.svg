@@ -10,18 +10,31 @@
   <stop offset="1" stop-color="#0969da" stop-opacity="0"/>
 </linearGradient>
 <clipPath id="portclip">
-  <rect x="16" y="66" width="332" height="0">
-    <animate attributeName="height" from="0" to="316.59999999999997" begin="0.3s" dur="1.3s" fill="freeze"/>
-  </rect>
+  <rect x="16" y="62" width="332" height="324.59999999999997"/>
 </clipPath>
 </defs>
+<style>
+.ln{opacity:0;animation:fi .06s linear forwards}
+@keyframes fi{to{opacity:1}}
+.wipe{animation:wp 1.25s cubic-bezier(.65,0,.35,1) .25s forwards}
+@keyframes wp{to{transform:translateY(328.59999999999997px)}}
+.scan{opacity:0;animation:sc 6s linear 1.9s infinite}
+@keyframes sc{0%{transform:translateY(0);opacity:0}8%{opacity:1}88%{opacity:1}100%{transform:translateY(356.59999999999997px);opacity:0}}
+.cur{animation:bl 1.1s step-end infinite}
+@keyframes bl{0%{opacity:1}50%{opacity:0}100%{opacity:1}}
+.dot{animation:pu 1.6s ease-in-out infinite}
+@keyframes pu{50%{opacity:.25}}
+.bar{transform:scaleX(0);transform-origin:0 0;animation:ld 2.1s ease-out .2s forwards}
+@keyframes ld{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.ln{animation:none;opacity:1}.wipe,.scan{display:none}.cur,.dot,.bar{animation:none}.bar{transform:none}}
+</style>
 <rect width="840" height="446" rx="12" fill="#f6f8fa"/>
 <path d="M0 12 a12 12 0 0 1 12 -12 h816 a12 12 0 0 1 12 12 v14 h-840 z" fill="#eaeef2"/>
 <circle cx="18" cy="13" r="4.5" fill="#ff5f57"/>
 <circle cx="34" cy="13" r="4.5" fill="#febc2e"/>
 <circle cx="50" cy="13" r="4.5" fill="#28c840"/>
 <text x="420.0" y="17" text-anchor="middle" font-size="10" fill="#57606a">varun@build ~ % ./profile</text>
-<circle cx="754" cy="13" r="3" fill="#0969da"><animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/></circle>
+<circle class="dot" cx="754" cy="13" r="3" fill="#0969da"/>
 <text x="764" y="16.5" font-size="8.5" letter-spacing="2" fill="#0969da">BUILDING</text>
 <rect x="14" y="34" width="336" height="356" rx="6" fill="#ffffff" stroke="#d0d7de"/>
 <text x="30" y="54" font-size="9" letter-spacing="3" fill="#57606a">PORTRAIT / VARUN</text>
@@ -72,32 +85,33 @@
 <text x="32" y="368.0" textLength="300" lengthAdjust="spacingAndGlyphs"> :-----------:----------------=*%%*%%%%+------------------------- </text>
 <text x="32" y="375.3" textLength="300" lengthAdjust="spacingAndGlyphs">.-------------:----------------+%%**%%%+-------------------------.</text>
 </g>
-<rect x="16" y="0" width="332" height="30" fill="url(#glow)"><animate attributeName="y" values="52;382.59999999999997;52" begin="1.8s" dur="6s" repeatCount="indefinite"/></rect>
+<rect class="scan" x="16" y="46" width="332" height="30" fill="url(#glow)"/>
+<rect class="wipe" x="16" y="62" width="332" height="324.59999999999997" fill="#ffffff"/>
 </g>
 <rect x="362" y="34" width="464" height="356" rx="6" fill="#ffffff" stroke="#d0d7de"/>
 <text x="380" y="54" font-size="9" letter-spacing="3" fill="#57606a">PROFILE / BUILDER</text>
 <g font-size="10.5" xml:space="preserve">
-<text x="380" y="74" opacity="0"><tspan fill="#1f2328" font-weight="bold">varun@build </tspan><tspan fill="#c3ccd6">--------------------------------------</tspan><animate attributeName="opacity" from="0" to="1" begin="0.50s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="89.2" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Name</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">Varun Chennuri</tspan><animate attributeName="opacity" from="0" to="1" begin="0.61s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="104.4" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Role</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">AI Product Architect</tspan><animate attributeName="opacity" from="0" to="1" begin="0.72s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="119.60000000000001" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Based</tspan><tspan fill="#c3ccd6">: ......... </tspan><tspan fill="#1f2328">Hyderabad, India</tspan><animate attributeName="opacity" from="0" to="1" begin="0.83s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="134.8" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Mode</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">Designing / Building / Shipping</tspan><animate attributeName="opacity" from="0" to="1" begin="0.94s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="158.36" fill="#6e7781" opacity="0">- <tspan font-weight="bold" fill="#1f2328">BUILD.FOCUS</tspan> <tspan fill="#c3ccd6">------------------------------</tspan><animate attributeName="opacity" from="0" to="1" begin="1.05s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="173.56" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Product</tspan><tspan fill="#c3ccd6">: ....... </tspan><tspan fill="#1f2328">Idea to governed release</tspan><animate attributeName="opacity" from="0" to="1" begin="1.16s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="188.76" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">AI</tspan><tspan fill="#c3ccd6">: ............ </tspan><tspan fill="#1f2328">Agents with audit trails</tspan><animate attributeName="opacity" from="0" to="1" begin="1.27s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="203.95999999999998" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Data</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">CRM/DMS pipelines and MIS</tspan><animate attributeName="opacity" from="0" to="1" begin="1.38s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="219.15999999999997" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Quality</tspan><tspan fill="#c3ccd6">: ....... </tspan><tspan fill="#1f2328">Testing and reliability</tspan><animate attributeName="opacity" from="0" to="1" begin="1.49s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="234.35999999999996" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Stack</tspan><tspan fill="#c3ccd6">: ......... </tspan><tspan fill="#1f2328">TypeScript / Python / Supabase</tspan><animate attributeName="opacity" from="0" to="1" begin="1.60s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="257.91999999999996" fill="#6e7781" opacity="0">- <tspan font-weight="bold" fill="#1f2328">SELECTED.WORK</tspan> <tspan fill="#c3ccd6">----------------------------</tspan><animate attributeName="opacity" from="0" to="1" begin="1.71s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="273.11999999999995" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Ledgerly</tspan><tspan fill="#c3ccd6">: ...... </tspan><tspan fill="#1f2328">Self-hosted personal finance</tspan><animate attributeName="opacity" from="0" to="1" begin="1.82s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="288.31999999999994" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">ClaimGuard</tspan><tspan fill="#c3ccd6">: .... </tspan><tspan fill="#1f2328">Governed repair benchmarking</tspan><animate attributeName="opacity" from="0" to="1" begin="1.93s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="303.5199999999999" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">InfiniteCtx</tspan><tspan fill="#c3ccd6">: ... </tspan><tspan fill="#1f2328">Memory for AI coding agents</tspan><animate attributeName="opacity" from="0" to="1" begin="2.04s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="318.7199999999999" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Humanonly</tspan><tspan fill="#c3ccd6">: ..... </tspan><tspan fill="#1f2328">Human-governed social platform</tspan><animate attributeName="opacity" from="0" to="1" begin="2.15s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="333.9199999999999" opacity="0"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">alarmclock</tspan><tspan fill="#c3ccd6">: .... </tspan><tspan fill="#1f2328">Deterministic Python CLI</tspan><animate attributeName="opacity" from="0" to="1" begin="2.26s" dur="0.05s" fill="freeze"/></text>
-<text x="380" y="357.4799999999999" font-size="10" letter-spacing="1.5" font-weight="bold" fill="#1f2328" opacity="0">FROM IDEA TO GOVERNED PRODUCT<animate attributeName="opacity" from="0" to="1" begin="2.37s" dur="0.05s" fill="freeze"/></text>
-<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="2.78s" dur="0.05s" fill="freeze"/><text x="380" y="378.7599999999999" fill="#6e7781">%</text><rect x="394" y="369.2599999999999" width="6.5" height="12" fill="#0969da"><animate attributeName="opacity" values="1;1;0;0" dur="1.1s" repeatCount="indefinite"/></rect></g>
+<text class="ln" style="animation-delay:0.50s" x="380" y="74"><tspan fill="#1f2328" font-weight="bold">varun@build </tspan><tspan fill="#c3ccd6">--------------------------------------</tspan></text>
+<text class="ln" style="animation-delay:0.61s" x="380" y="89.2"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Name</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">Varun Chennuri</tspan></text>
+<text class="ln" style="animation-delay:0.72s" x="380" y="104.4"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Role</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">AI Product Architect</tspan></text>
+<text class="ln" style="animation-delay:0.83s" x="380" y="119.60000000000001"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Based</tspan><tspan fill="#c3ccd6">: ......... </tspan><tspan fill="#1f2328">Hyderabad, India</tspan></text>
+<text class="ln" style="animation-delay:0.94s" x="380" y="134.8"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Mode</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">Designing / Building / Shipping</tspan></text>
+<text class="ln" style="animation-delay:1.05s" x="380" y="158.36" fill="#6e7781">- <tspan font-weight="bold" fill="#1f2328">BUILD.FOCUS</tspan> <tspan fill="#c3ccd6">------------------------------</tspan></text>
+<text class="ln" style="animation-delay:1.16s" x="380" y="173.56"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Product</tspan><tspan fill="#c3ccd6">: ....... </tspan><tspan fill="#1f2328">Idea to governed release</tspan></text>
+<text class="ln" style="animation-delay:1.27s" x="380" y="188.76"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">AI</tspan><tspan fill="#c3ccd6">: ............ </tspan><tspan fill="#1f2328">Agents with audit trails</tspan></text>
+<text class="ln" style="animation-delay:1.38s" x="380" y="203.95999999999998"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Data</tspan><tspan fill="#c3ccd6">: .......... </tspan><tspan fill="#1f2328">CRM/DMS pipelines and MIS</tspan></text>
+<text class="ln" style="animation-delay:1.49s" x="380" y="219.15999999999997"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Quality</tspan><tspan fill="#c3ccd6">: ....... </tspan><tspan fill="#1f2328">Testing and reliability</tspan></text>
+<text class="ln" style="animation-delay:1.60s" x="380" y="234.35999999999996"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Stack</tspan><tspan fill="#c3ccd6">: ......... </tspan><tspan fill="#1f2328">TypeScript / Python / Supabase</tspan></text>
+<text class="ln" style="animation-delay:1.71s" x="380" y="257.91999999999996" fill="#6e7781">- <tspan font-weight="bold" fill="#1f2328">SELECTED.WORK</tspan> <tspan fill="#c3ccd6">----------------------------</tspan></text>
+<text class="ln" style="animation-delay:1.82s" x="380" y="273.11999999999995"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Ledgerly</tspan><tspan fill="#c3ccd6">: ...... </tspan><tspan fill="#1f2328">Self-hosted personal finance</tspan></text>
+<text class="ln" style="animation-delay:1.93s" x="380" y="288.31999999999994"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">ClaimGuard</tspan><tspan fill="#c3ccd6">: .... </tspan><tspan fill="#1f2328">Governed repair benchmarking</tspan></text>
+<text class="ln" style="animation-delay:2.04s" x="380" y="303.5199999999999"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">InfiniteCtx</tspan><tspan fill="#c3ccd6">: ... </tspan><tspan fill="#1f2328">Memory for AI coding agents</tspan></text>
+<text class="ln" style="animation-delay:2.15s" x="380" y="318.7199999999999"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">Humanonly</tspan><tspan fill="#c3ccd6">: ..... </tspan><tspan fill="#1f2328">Human-governed social platform</tspan></text>
+<text class="ln" style="animation-delay:2.26s" x="380" y="333.9199999999999"><tspan fill="#c3ccd6">. </tspan><tspan fill="#0969da" font-weight="bold">alarmclock</tspan><tspan fill="#c3ccd6">: .... </tspan><tspan fill="#1f2328">Deterministic Python CLI</tspan></text>
+<text class="ln" style="animation-delay:2.37s" x="380" y="357.4799999999999" font-size="10" letter-spacing="1.5" font-weight="bold" fill="#1f2328">FROM IDEA TO GOVERNED PRODUCT</text>
+<g class="ln" style="animation-delay:2.78s"><text x="380" y="378.7599999999999" fill="#6e7781">%</text><rect class="cur" x="394" y="369.2599999999999" width="6.5" height="12" fill="#0969da"/></g>
 </g>
 <rect x="0" y="420" width="840" height="26" fill="#eaeef2"/>
-<rect x="0" y="442" width="840" height="4" fill="#0969da" opacity="0.85"><animate attributeName="width" from="0" to="840" begin="0.2s" dur="2.2s" fill="freeze"/></rect>
+<rect class="bar" x="0" y="442" width="840" height="4" fill="#0969da" opacity="0.85"/>
 <text x="420.0" y="436" text-anchor="middle" font-size="8.5" letter-spacing="3" fill="#57606a">PRODUCT ENGINEERING / AI AGENTS / DEALER PLATFORMS / DEVELOPER TOOLS</text>
 </svg>

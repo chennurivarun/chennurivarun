@@ -130,19 +130,34 @@ def build(theme_name):
   <stop offset="1" stop-color="{t["scan"]}" stop-opacity="0"/>
 </linearGradient>
 <clipPath id="portclip">
-  <rect x="{L_X+2}" y="{P_Y0-10}" width="{L_W-4}" height="0">
-    <animate attributeName="height" from="0" to="{port_h}" begin="0.3s" dur="1.3s" fill="freeze"/>
-  </rect>
+  <rect x="{L_X+2}" y="{P_Y0-14}" width="{L_W-4}" height="{port_h+8}"/>
 </clipPath>
 </defs>''')
+    # CSS animations: unlike SMIL, these run inside GitHub's <img>/camo embed.
+    # Everything is visible at base state, so a renderer without CSS animation
+    # support shows the finished card instead of a blank one.
+    s.append(f'''<style>
+.ln{{opacity:0;animation:fi .06s linear forwards}}
+@keyframes fi{{to{{opacity:1}}}}
+.wipe{{animation:wp 1.25s cubic-bezier(.65,0,.35,1) .25s forwards}}
+@keyframes wp{{to{{transform:translateY({port_h+12}px)}}}}
+.scan{{opacity:0;animation:sc 6s linear 1.9s infinite}}
+@keyframes sc{{0%{{transform:translateY(0);opacity:0}}8%{{opacity:1}}88%{{opacity:1}}100%{{transform:translateY({port_h+40}px);opacity:0}}}}
+.cur{{animation:bl 1.1s step-end infinite}}
+@keyframes bl{{0%{{opacity:1}}50%{{opacity:0}}100%{{opacity:1}}}}
+.dot{{animation:pu 1.6s ease-in-out infinite}}
+@keyframes pu{{50%{{opacity:.25}}}}
+.bar{{transform:scaleX(0);transform-origin:0 0;animation:ld 2.1s ease-out .2s forwards}}
+@keyframes ld{{to{{transform:scaleX(1)}}}}
+@media (prefers-reduced-motion:reduce){{.ln{{animation:none;opacity:1}}.wipe,.scan{{display:none}}.cur,.dot,.bar{{animation:none}}.bar{{transform:none}}}}
+</style>''')
     # canvas + title bar
     s.append(f'<rect width="{W}" height="{H}" rx="12" fill="{t["bg"]}"/>')
     s.append(f'<path d="M0 12 a12 12 0 0 1 12 -12 h{W-24} a12 12 0 0 1 12 12 v14 h-{W} z" fill="{t["chrome"]}"/>')
     for i, c in enumerate((t["light1"], t["light2"], t["light3"])):
         s.append(f'<circle cx="{18 + i*16}" cy="13" r="4.5" fill="{c}"/>')
     s.append(f'<text x="{W/2}" y="17" text-anchor="middle" font-size="10" fill="{t["title"]}">varun@build ~ % ./profile</text>')
-    s.append(f'<circle cx="{W-86}" cy="13" r="3" fill="{t["accent"]}">'
-             f'<animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/></circle>')
+    s.append(f'<circle class="dot" cx="{W-86}" cy="13" r="3" fill="{t["accent"]}"/>')
     s.append(f'<text x="{W-76}" y="16.5" font-size="8.5" letter-spacing="2" fill="{t["accent"]}">BUILDING</text>')
 
     # left panel
@@ -162,9 +177,9 @@ def build(theme_name):
         )
     s.append('</g>')
     # looping scanline over the portrait
-    s.append(f'<rect x="{L_X+2}" y="0" width="{L_W-4}" height="30" fill="url(#glow)">'
-             f'<animate attributeName="y" values="{P_Y0-24};{P_Y0+port_h-10};{P_Y0-24}" '
-             f'begin="1.8s" dur="6s" repeatCount="indefinite"/></rect>')
+    s.append(f'<rect class="scan" x="{L_X+2}" y="{P_Y0-30}" width="{L_W-4}" height="30" fill="url(#glow)"/>')
+    # cover that slides down to reveal the portrait (top-to-bottom wipe)
+    s.append(f'<rect class="wipe" x="{L_X+2}" y="{P_Y0-14}" width="{L_W-4}" height="{port_h+8}" fill="{t["panel"]}"/>')
     s.append('</g>')
 
     # right panel
@@ -180,37 +195,35 @@ def build(theme_name):
             y += T_LH * 0.55
             continue
         begin = PRINT_START + n * PRINT_STEP
-        anim = f'<animate attributeName="opacity" from="0" to="1" begin="{begin:.2f}s" dur="0.05s" fill="freeze"/>'
+        cls = f'class="ln" style="animation-delay:{begin:.2f}s"'
         if kind == "hdr":
-            s.append(f'<text x="{T_X0}" y="{y}" opacity="0"><tspan fill="{t["val"]}" font-weight="bold">{esc(line[1])}</tspan><tspan fill="{t["dots"]}">{esc(line[2])}</tspan>{anim}</text>')
+            s.append(f'<text {cls} x="{T_X0}" y="{y}"><tspan fill="{t["val"]}" font-weight="bold">{esc(line[1])}</tspan><tspan fill="{t["dots"]}">{esc(line[2])}</tspan></text>')
         elif kind == "sec":
-            s.append(f'<text x="{T_X0}" y="{y}" fill="{t["muted"]}" opacity="0">- <tspan font-weight="bold" fill="{t["val"]}">{esc(line[1])}</tspan> <tspan fill="{t["dots"]}">{"-" * line[2]}</tspan>{anim}</text>')
+            s.append(f'<text {cls} x="{T_X0}" y="{y}" fill="{t["muted"]}">- <tspan font-weight="bold" fill="{t["val"]}">{esc(line[1])}</tspan> <tspan fill="{t["dots"]}">{"-" * line[2]}</tspan></text>')
         elif kind == "kv":
             label, value = line[1], line[2]
             fill = "." * max(2, 14 - len(label))
             s.append(
-                f'<text x="{T_X0}" y="{y}" opacity="0">'
+                f'<text {cls} x="{T_X0}" y="{y}">'
                 f'<tspan fill="{t["dots"]}">. </tspan>'
                 f'<tspan fill="{t["key"]}" font-weight="bold">{esc(label)}</tspan>'
                 f'<tspan fill="{t["dots"]}">: {fill} </tspan>'
-                f'<tspan fill="{t["val"]}">{esc(value)}</tspan>{anim}</text>'
+                f'<tspan fill="{t["val"]}">{esc(value)}</tspan></text>'
             )
         elif kind == "tag":
-            s.append(f'<text x="{T_X0}" y="{y}" font-size="10" letter-spacing="1.5" font-weight="bold" fill="{t["val"]}" opacity="0">{esc(line[1])}{anim}</text>')
+            s.append(f'<text {cls} x="{T_X0}" y="{y}" font-size="10" letter-spacing="1.5" font-weight="bold" fill="{t["val"]}">{esc(line[1])}</text>')
         y += T_LH
         n += 1
     # blinking block cursor on a fresh prompt line, appears after printing finishes
     done = PRINT_START + n * PRINT_STEP + 0.3
-    s.append(f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{done:.2f}s" dur="0.05s" fill="freeze"/>'
+    s.append(f'<g class="ln" style="animation-delay:{done:.2f}s">'
              f'<text x="{T_X0}" y="{y + T_LH * 0.4}" fill="{t["muted"]}">%</text>'
-             f'<rect x="{T_X0 + 14}" y="{y + T_LH * 0.4 - 9.5}" width="6.5" height="12" fill="{t["accent"]}">'
-             f'<animate attributeName="opacity" values="1;1;0;0" dur="1.1s" repeatCount="indefinite"/></rect></g>')
+             f'<rect class="cur" x="{T_X0 + 14}" y="{y + T_LH * 0.4 - 9.5}" width="6.5" height="12" fill="{t["accent"]}"/></g>')
     s.append('</g>')
 
     # footer strip with one-shot loading sweep on the accent bar
     s.append(f'<rect x="0" y="{H-26}" width="{W}" height="26" fill="{t["chrome"]}"/>')
-    s.append(f'<rect x="0" y="{H-4}" width="{W}" height="4" fill="{t["accent"]}" opacity="0.85">'
-             f'<animate attributeName="width" from="0" to="{W}" begin="0.2s" dur="2.2s" fill="freeze"/></rect>')
+    s.append(f'<rect class="bar" x="0" y="{H-4}" width="{W}" height="4" fill="{t["accent"]}" opacity="0.85"/>')
     s.append(f'<text x="{W/2}" y="{H-10}" text-anchor="middle" font-size="8.5" letter-spacing="3" fill="{t["title"]}">PRODUCT ENGINEERING / AI AGENTS / DEALER PLATFORMS / DEVELOPER TOOLS</text>')
     s.append('</svg>')
     return "\n".join(s)
